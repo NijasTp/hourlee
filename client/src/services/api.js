@@ -2,7 +2,17 @@
  * API fetch client wrapper for backend communication
  */
 
-const API_BASE = '/api';
+const getApiBase = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  if (import.meta.env.DEV) {
+    return '/api';
+  }
+  return 'https://hourlee-api.onrender.com/api';
+};
+
+const API_BASE = getApiBase();
 
 const getHeaders = () => {
   const token = localStorage.getItem('hourlee_token');

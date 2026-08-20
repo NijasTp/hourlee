@@ -12,8 +12,13 @@ const app = express();
 // Connect Database
 connectDB();
 
-// Middleware
-app.use(cors());
+// Middleware - Enable CORS for Vercel frontend & localhost
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 // Root endpoint
