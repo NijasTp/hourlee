@@ -8,7 +8,6 @@ import Today from './pages/Today';
 import History from './pages/History';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
-import {Agentation} from 'agentation'
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 

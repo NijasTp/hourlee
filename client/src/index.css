@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Hourlee CSS - Jitter Design System (Strict DESIGN.md Implementation)
+   Hourlee CSS - Jitter Design System (Mobile-First Responsive Implementation)
    ========================================================================== */
 
 :root {
@@ -135,6 +135,7 @@ input, select {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .brand-title {
@@ -148,17 +149,19 @@ input, select {
 .nav-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   background: var(--bg-card);
-  padding: 5px;
+  padding: 4px;
   border-radius: var(--radius-nav-elements);
   border: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .nav-link {
-  padding: 6px 16px;
+  padding: 6px 14px;
   border-radius: 14px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-secondary);
   transition: all 0.15s ease;
@@ -185,8 +188,8 @@ input, select {
 /* DESIGN.md Pill Buttons */
 .btn-pill {
   border-radius: var(--radius-buttons);
-  padding: 12px 28px;
-  font-size: 15px;
+  padding: 12px 26px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -230,8 +233,8 @@ input, select {
   background: transparent;
   color: var(--text-secondary);
   border-radius: var(--radius-buttons);
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 10px 18px;
+  font-size: 13px;
   font-weight: 600;
   transition: color 0.15s ease;
 }
@@ -246,7 +249,7 @@ input, select {
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   border-radius: var(--radius-badges);
-  padding: 8px 18px;
+  padding: 6px 14px;
   font-size: 13px;
   font-weight: 500;
   transition: all 0.15s ease;
@@ -262,9 +265,9 @@ input, select {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 14px;
+  padding: 4px 12px;
   border-radius: var(--radius-badges);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -290,13 +293,13 @@ input, select {
 .card-jitter {
   background: var(--bg-card);
   border-radius: var(--radius-cards);
-  padding: 36px;
+  padding: 32px;
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-xl);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Modal Design System (`DESIGN.md` Overlay & Cards) */
+/* Modal Design System */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -307,7 +310,7 @@ input, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
   animation: modalFadeIn 0.2s ease-out;
 }
 
@@ -323,30 +326,32 @@ input, select {
   box-shadow: var(--shadow-xl);
   max-width: 520px;
   width: 100%;
-  padding: 40px;
+  padding: 32px 28px;
   position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .form-group {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .form-label {
   display: block;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .form-input, .input-pill {
   width: 100%;
-  padding: 14px 20px;
+  padding: 12px 18px;
   border-radius: var(--radius-inputs);
   border: 1px solid var(--border-subtle);
   background: var(--bg-input);
   color: var(--text-primary);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   outline: none;
   transition: border-color 0.2s ease;
@@ -359,20 +364,20 @@ input, select {
 .category-selector {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 .category-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 14px 20px;
+  gap: 6px;
+  padding: 12px 16px;
   border-radius: var(--radius-inputs);
   border: 1px solid var(--border-subtle);
   background: var(--bg-canvas);
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -400,21 +405,21 @@ input, select {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-cards);
-  padding: 28px 36px;
-  margin-bottom: 32px;
+  padding: 24px 28px;
+  margin-bottom: 28px;
   box-shadow: var(--shadow-xl);
 }
 
 .chip-tag {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
+  gap: 4px;
+  padding: 5px 12px;
   border-radius: var(--radius-badges);
   background: var(--bg-canvas);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -429,7 +434,7 @@ input, select {
   border: none;
   background: none;
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   padding: 0 2px;
 }
@@ -442,15 +447,15 @@ input, select {
 .timeline-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   position: relative;
-  padding-left: 100px;
+  padding-left: 90px;
 }
 
 .timeline-list::before {
   content: '';
   position: absolute;
-  left: 80px;
+  left: 72px;
   top: 10px;
   bottom: 10px;
   width: 2px;
@@ -459,12 +464,12 @@ input, select {
 
 .timeline-time-label {
   position: absolute;
-  left: -100px;
-  top: 18px;
-  width: 70px;
+  left: -90px;
+  top: 16px;
+  width: 60px;
   text-align: right;
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-secondary);
 }
@@ -474,7 +479,7 @@ input, select {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-nav-elements);
-  padding: 20px 28px;
+  padding: 18px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -484,7 +489,7 @@ input, select {
 
 .timeline-bullet {
   position: absolute;
-  left: -24px;
+  left: -22px;
   top: 50%;
   transform: translateY(-50%);
   width: 10px;
@@ -497,7 +502,7 @@ input, select {
 /* Timeline Slot for Unlogged Gaps */
 .timeline-gap-slot {
   position: relative;
-  padding: 12px 24px;
+  padding: 12px 20px;
   border-radius: var(--radius-nav-elements);
   background: transparent;
   border: 1px dashed var(--border-subtle);
@@ -515,7 +520,7 @@ input, select {
 .timeline-gap-slot::before {
   content: '';
   position: absolute;
-  left: -24px;
+  left: -22px;
   top: 50%;
   transform: translateY(-50%);
   width: 6px;
@@ -529,34 +534,93 @@ input, select {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-cards);
-  padding: 36px;
-  margin-bottom: 28px;
+  padding: 28px;
+  margin-bottom: 24px;
   box-shadow: var(--shadow-xl);
 }
 
 .settings-header {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--border-subtle);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* ==========================================================================
+   Mobile-First Responsive Adjustments (< 640px Phones & Tablets)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .site-header {
+    padding: 10px 14px;
+  }
+
+  .header-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .brand-title {
+    font-size: 20px;
+  }
+
+  .nav-row {
+    width: 100%;
+    justify-content: space-between;
+    padding: 3px;
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .main-wrap, .main-content {
+    padding: 20px 14px 60px;
+  }
+
+  .card-jitter, .composer-card, .settings-block {
+    padding: 20px 16px;
+    border-radius: 28px;
+  }
+
+  /* Responsive Timeline */
   .timeline-list {
     padding-left: 0;
   }
-  .timeline-list::before {
+
+  .timeline-list::before, .timeline-bullet, .timeline-gap-slot::before {
     display: none;
   }
+
   .timeline-time-label {
     position: static;
     text-align: left;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    font-size: 12px;
   }
-  .timeline-bullet {
-    display: none;
+
+  .timeline-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
   }
-  .card-jitter {
-    padding: 24px;
+
+  .timeline-gap-slot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .btn-pill {
+    padding: 10px 20px;
+    font-size: 13px;
+    width: 100%;
+  }
+
+  .input-pill, .form-input {
+    font-size: 13px;
+    padding: 10px 16px;
   }
 }

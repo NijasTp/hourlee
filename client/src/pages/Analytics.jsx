@@ -32,12 +32,10 @@ export default function Analytics() {
       <Navbar />
 
       <main className="main-wrap">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '28px', flexWrap: 'wrap', gap: '12px' }}>
           <div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '32px', fontWeight: 800 }}>Analytics</h2>
-            <p style={{ color: 'var(--text-sub)', fontSize: '15px' }}>
-              Productivity metrics and time allocation.
-            </p>
+            <span className="badge-kicker badge-lilac" style={{ marginBottom: '4px' }}>Productivity Insights</span>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px, 5vw, 36px)', fontWeight: 800, letterSpacing: '-0.03em' }}>Analytics</h1>
           </div>
 
           <div className="nav-row">
@@ -63,7 +61,7 @@ export default function Analytics() {
         </div>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '60px 24px', color: 'var(--text-sub)' }}>
+          <div style={{ textAlign: 'center', padding: '60px 24px', color: 'var(--text-secondary)' }}>
             Loading analytics...
           </div>
         ) : error ? (
@@ -71,85 +69,79 @@ export default function Analytics() {
             {error}
           </div>
         ) : !stats ? null : (
-          <div>
-            {/* Visual Split Bar */}
-            <div style={{
-              background: 'var(--bg-surface)',
-              border: '1px solid var(--border-color)',
-              borderRadius: '24px',
-              padding: '28px',
-              marginBottom: '32px'
-            }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '16px' }}>Productive vs Non-Productive Ratio</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            {/* Productive vs Non-Productive Split Bar Card */}
+            <div className="card-jitter" style={{ padding: '24px' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '14px' }}>Productive vs Non-Productive Ratio</h3>
 
-              <div style={{ height: '20px', borderRadius: '10px', overflow: 'hidden', background: 'var(--bg-input)', display: 'flex', marginBottom: '16px' }}>
+              <div style={{ height: '16px', borderRadius: '8px', overflow: 'hidden', background: 'var(--bg-input)', display: 'flex', marginBottom: '14px' }}>
                 <div
                   style={{
                     width: `${stats.productivePercentage}%`,
-                    background: 'var(--color-violet)',
+                    background: 'var(--color-eclipse-violet)',
                     transition: 'width 0.4s ease'
                   }}
                 />
                 <div
                   style={{
                     width: `${stats.nonProductivePercentage}%`,
-                    background: 'var(--color-slate-light)',
+                    background: 'var(--color-slate)',
                     transition: 'width 0.4s ease'
                   }}
                 />
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', fontWeight: 600 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', fontSize: '13px', fontWeight: 600 }}>
                 <span style={{ color: 'var(--color-productive-text)' }}>
                   Productive: {stats.productivePercentage}% ({formatDuration(stats.productiveSeconds)})
                 </span>
-                <span style={{ color: 'var(--text-sub)' }}>
+                <span style={{ color: 'var(--text-secondary)' }}>
                   Non-productive: {stats.nonProductivePercentage}% ({formatDuration(stats.nonProductiveSeconds)})
                 </span>
               </div>
             </div>
 
-            {/* Clean Stats Breakdown List */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '32px' }}>
-              <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)', borderRadius: '20px', padding: '20px 24px' }}>
-                <span style={{ fontSize: '13px', color: 'var(--text-sub)', fontWeight: 500 }}>Total Tracked</span>
-                <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--text-main)', marginTop: '4px' }}>
+            {/* Metrics Breakdown Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+              <div className="card-jitter" style={{ padding: '20px 24px' }}>
+                <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 600 }}>Total Tracked</span>
+                <div style={{ fontSize: '26px', fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--text-primary)', marginTop: '4px' }}>
                   {formatDuration(stats.totalTrackedSeconds)}
                 </div>
               </div>
 
-              <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)', borderRadius: '20px', padding: '20px 24px' }}>
-                <span style={{ fontSize: '13px', color: 'var(--text-sub)', fontWeight: 500 }}>Avg Productive / Day</span>
-                <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--color-productive-text)', marginTop: '4px' }}>
+              <div className="card-jitter" style={{ padding: '20px 24px' }}>
+                <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 600 }}>Avg Productive / Day</span>
+                <div style={{ fontSize: '26px', fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--color-productive-text)', marginTop: '4px' }}>
                   {formatDuration(stats.averageProductivePerDaySeconds)}
                 </div>
               </div>
 
-              <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)', borderRadius: '20px', padding: '20px 24px' }}>
-                <span style={{ fontSize: '13px', color: 'var(--text-sub)', fontWeight: 500 }}>Activities Logged</span>
-                <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--text-main)', marginTop: '4px' }}>
+              <div className="card-jitter" style={{ padding: '20px 24px' }}>
+                <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 600 }}>Activities Logged</span>
+                <div style={{ fontSize: '26px', fontFamily: 'var(--font-display)', fontWeight: 800, color: 'var(--text-primary)', marginTop: '4px' }}>
                   {stats.activityCount}
                 </div>
               </div>
             </div>
 
-            {/* Top Activities */}
-            <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)', borderRadius: '24px', padding: '28px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '20px' }}>Top Activities</h3>
+            {/* Top Activities List */}
+            <div className="card-jitter" style={{ padding: '24px' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '16px' }}>Top Activities</h3>
 
               {stats.topActivities.length === 0 ? (
-                <p style={{ color: 'var(--text-sub)', fontSize: '14px' }}>No activities logged in this range.</p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>No activities logged in this range.</p>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   {stats.topActivities.map((act, idx) => (
-                    <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '10px', borderBottom: '1px solid var(--border-color)' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <span className={`tag-cat ${act.category === 'productive' ? 'tag-productive' : 'tag-non-productive'}`}>
+                    <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', paddingBottom: '10px', borderBottom: '1px solid var(--border-subtle)' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span className={`badge-kicker ${act.category === 'productive' ? 'badge-productive' : 'badge-non-productive'}`}>
                           {act.category === 'productive' ? 'Productive' : 'Non-productive'}
                         </span>
-                        <span style={{ fontWeight: 600, fontSize: '15px' }}>{act.title}</span>
+                        <span style={{ fontWeight: 600, fontSize: '14px' }}>{act.title}</span>
                       </div>
-                      <div style={{ fontSize: '14px', fontWeight: 700 }}>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)' }}>
                         {formatDuration(act.totalDuration)} ({act.count} logs)
                       </div>
                     </div>

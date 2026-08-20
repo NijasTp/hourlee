@@ -21,7 +21,6 @@ export default function StopwatchTicker({ runningActivity, onStop, onToggleCateg
     return () => clearInterval(interval);
   }, [runningActivity?._id, runningActivity?.startTime]);
 
-  // Keyboard shortcut: Alt + S toggles current activity's category
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.altKey && (e.key === 's' || e.key === 'S')) {
@@ -46,25 +45,25 @@ export default function StopwatchTicker({ runningActivity, onStop, onToggleCateg
       background: 'var(--bg-card)',
       border: `2px solid ${isProd ? 'var(--color-eclipse-violet)' : 'var(--color-slate)'}`,
       borderRadius: 'var(--radius-cards)',
-      padding: '24px 36px',
-      marginBottom: '32px',
+      padding: '20px 24px',
+      marginBottom: '28px',
       boxShadow: 'var(--shadow-xl)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       flexWrap: 'wrap',
-      gap: '20px'
+      gap: '16px'
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: '220px' }}>
         <div style={{
-          width: '12px',
-          height: '12px',
+          width: '10px',
+          height: '10px',
           borderRadius: '50%',
           background: isProd ? 'var(--color-eclipse-violet)' : 'var(--color-slate)',
-          boxShadow: `0 0 12px ${isProd ? 'var(--color-eclipse-violet)' : 'var(--color-slate)'}`
+          boxShadow: `0 0 10px ${isProd ? 'var(--color-eclipse-violet)' : 'var(--color-slate)'}`
         }} />
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
             <button
               type="button"
               onClick={() => onToggleCategory(runningActivity._id, isProd ? 'non-productive' : 'productive')}
@@ -74,44 +73,48 @@ export default function StopwatchTicker({ runningActivity, onStop, onToggleCateg
             >
               {isProd ? 'Productive' : 'Non-productive'} ⇄
             </button>
-            <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-              Started at {formatTime(runningActivity.startTime)}
+            <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+              {formatTime(runningActivity.startTime)}
             </span>
           </div>
-          <h3 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+          <h3 style={{ fontSize: 'clamp(18px, 4.5vw, 24px)', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
             {runningActivity.title}
           </h3>
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', width: '100%', maxWidth: '420px', justifyContent: 'flex-end' }}>
         <div style={{
           fontFamily: 'var(--font-display)',
-          fontSize: '38px',
+          fontSize: 'clamp(28px, 6vw, 38px)',
           fontWeight: 800,
           letterSpacing: '-0.04em',
           color: 'var(--text-primary)',
-          marginRight: '8px'
+          marginRight: 'auto'
         }}>
           {formatTimerDigits(elapsedSeconds)}
         </div>
 
-       
+        <button
+          onClick={() => onToggleCategory(runningActivity._id, isProd ? 'non-productive' : 'productive')}
+          className="btn-pill btn-pill-quiet"
+          style={{ padding: '8px 14px', fontSize: '12px' }}
+        >
+          {isProd ? 'Mark Non-Productive' : 'Mark Productive'}
+        </button>
 
-        {/* 2. End Current Task & Start New Stopwatch starting NOW */}
         <button
           onClick={() => onSwitchToNewCategory(isProd ? 'non-productive' : 'productive')}
           className={isProd ? 'btn-pill btn-pill-quiet' : 'btn-pill btn-pill-violet'}
-          style={{ padding: '10px 18px', fontSize: '13px' }}
-          title="End this task and start a new stopwatch now"
+          style={{ padding: '8px 14px', fontSize: '12px' }}
         >
-          {isProd ? '⚡ Start Unproductive Break' : '⚡ Start Productive Focus'}
+          {isProd ? '⚡ Unproductive Break' : '⚡ Productive Focus'}
         </button>
 
         <button
           onClick={() => onStop(runningActivity._id)}
           className="btn-pill btn-pill-dark"
-          style={{ background: '#e11d48', color: '#ffffff', padding: '10px 18px', fontSize: '13px' }}
+          style={{ background: '#e11d48', color: '#ffffff', padding: '8px 16px', fontSize: '12px' }}
         >
           Stop
         </button>
